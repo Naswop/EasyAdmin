@@ -29,20 +29,14 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     }],
                     'delete', 'export'],
                 cols: [[
-                    {type: "checkbox"},
-                    {field: 'id', width: 80, title: 'ID'},
-                    {field: 'sort', width: 80, title: '排序', edit: 'text'},
-                    {field: 'cate.title', minWidth: 80, title: '商品分类'},
-                    {field: 'title', minWidth: 80, title: '商品名称'},
-                    {field: 'logo', minWidth: 80, title: '分类图片', search: false, templet: ea.table.image},
-                    {field: 'market_price', width: 100, title: '市场价', templet: ea.table.price},
-                    {field: 'discount_price', width: 100, title: '折扣价', templet: ea.table.price},
-                    {field: 'total_stock', width: 100, title: '库存统计'},
-                    {field: 'stock', width: 100, title: '剩余库存'},
-                    {field: 'virtual_sales', width: 100, title: '虚拟销量'},
-                    {field: 'sales', width: 80, title: '销量',auth: 'stock'},
-                    {field: 'status', title: '状态', width: 85, selectList: {0: '禁用', 1: '启用'}, templet: ea.table.switch},
-                    {field: 'create_time', minWidth: 80, title: '创建时间', search: 'range'},
+                    { type: "checkbox" },
+                    { field: 'id', width: 80, title: 'ID' },
+                    { field: 'sort', width: 80, title: '排序', edit: 'text' },
+                    { field: 'cate.title', minWidth: 80, title: '设备分类' },
+                    { field: 'title', minWidth: 80, title: '设备名称' },
+                    // { field: 'images', minWidth: 80, title: '设备图片', search: false, templet: ea.table.image },
+                    { field: 'status', title: '状态', width: 85, selectList: { 0: '禁用', 1: '启用' }, templet: ea.table.switch },
+                    { field: 'create_time', minWidth: 80, title: '创建时间', search: 'range' },
                     {
                         width: 250,
                         title: '操作',
@@ -55,12 +49,6 @@ define(["jquery", "easy-admin"], function ($, ea) {
                                 auth: 'edit',
                                 class: 'layui-btn layui-btn-xs layui-btn-success',
                                 extend: 'data-full="true"',
-                            }, {
-                                text: '入库',
-                                url: init.stock_url,
-                                method: 'open',
-                                auth: 'stock',
-                                class: 'layui-btn layui-btn-xs layui-btn-normal',
                             }],
                             'delete']
                     }
@@ -73,9 +61,6 @@ define(["jquery", "easy-admin"], function ($, ea) {
             ea.listen();
         },
         edit: function () {
-            ea.listen();
-        },
-        stock: function () {
             ea.listen();
         },
     };

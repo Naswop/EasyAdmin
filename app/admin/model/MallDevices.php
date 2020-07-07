@@ -26,9 +26,4 @@ class MallDevices extends TimeModel
     {
         return $this->belongsTo('app\admin\model\MallKinds', 'kinds_id', 'id');
     }
-    public function groups()
-    {
-        return $this->belongsTo('app\admin\model\MallAdmin', 'groups_id', 'id');
-    }
-
 }

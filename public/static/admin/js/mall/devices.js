@@ -9,7 +9,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
         delete_url: 'mall.devices/delete',
         export_url: 'mall.devices/export',
         modify_url: 'mall.devices/modify',
-        
+
     };
 
     var Controller = {
@@ -32,7 +32,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     { type: "checkbox" },
                     { field: 'id', width: 80, title: 'ID' },
                     { field: 'sort', width: 80, title: '排序', edit: 'text' },
-                    { field: 'kinds.title', minWidth: 80, title: '设备分类' },
+                    { field: 'kinds_id', minWidth: 80, title: '设备分类', },
                     { field: 'title', minWidth: 80, title: '设备名称' },
                     { field: 'status', title: '状态', width: 85, selectList: { 0: '禁用', 1: '启用' }, templet: ea.table.switch },
                     { field: 'create_time', minWidth: 80, title: '创建时间', search: 'range' },
