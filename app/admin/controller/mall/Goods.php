@@ -40,13 +40,29 @@ class Goods extends AdminController
                 return $this->selectList();
             }
             list($page, $limit, $where) = $this->buildTableParames();
+            $groups_id = session('admin.groups_id');
+            //管理员班组
+            if ($groups_id == 0) {
+                $count = $this->model
+                    ->withJoin('cate', 'LEFT')
+                    ->where($where)
+                    ->count();
+                $list = $this->model
+                    ->withJoin('cate', 'LEFT')
+                    ->where($where)
+                    ->page($page, $limit)
+                    ->order($this->sort)
+                    ->select();
+            }
             $count = $this->model
                 ->withJoin('cate', 'LEFT')
                 ->where($where)
+                ->where('groups_id', $groups_id)
                 ->count();
             $list = $this->model
                 ->withJoin('cate', 'LEFT')
                 ->where($where)
+                ->where('groups_id', $groups_id)
                 ->page($page, $limit)
                 ->order($this->sort)
                 ->select();
@@ -84,5 +100,4 @@ class Goods extends AdminController
         $this->assign('row', $row);
         return $this->fetch();
     }
-
 }

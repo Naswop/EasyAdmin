@@ -39,16 +39,29 @@ class Devices extends AdminController
                 return $this->selectList();
             }
             list($page, $limit, $where) = $this->buildTableParames();
-            // $groups_id = session('$groups_id');
-            $groups_id = $_SESSION('$groups_id');
+            $groups_id = session('admin.groups_id');
+            //管理员班组
+            // if ($groups_id == 0) {
+            //     $count = $this->model
+            //         ->withJoin('kind', 'LEFT')
+            //         ->where($where)
+            //         ->count();
+            //     $list = $this->model
+            //         ->withJoin('kind', 'LEFT')
+            //         ->where($where)
+            //         ->page($page, $limit)
+            //         ->order($this->sort)
+            //         ->select();
+            // }
             $count = $this->model
-                ->withJoin('kinds', 'LEFT')
+                ->withJoin('kind', 'LEFT')
                 ->where($where)
+                ->where('groups_id', $groups_id)
                 ->count();
             $list = $this->model
-                ->withJoin('kinds', 'LEFT')
+                ->withJoin('kind', 'LEFT')
                 ->where($where)
-                ->where($groups_id)
+                ->where('groups_id', $groups_id)
                 ->page($page, $limit)
                 ->order($this->sort)
                 ->select();

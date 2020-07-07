@@ -57,6 +57,7 @@ class Login extends AdminController
             $captcha == 1 && $rule['captcha|验证码'] = 'require|captcha';
             $this->validate($post, $rule);
             $admin = SystemAdmin::where(['username' => $post['username']])->find();
+            $groups_id = SystemAdmin::where(['groups_id' => $post['username']])->find();
             if (empty($admin)) {
                 $this->error('用户不存在');
             }
@@ -72,9 +73,7 @@ class Login extends AdminController
             unset($admin['password']);
             $admin['expire_time'] = $post['keep_login'] == 1 ? true : time() + 7200;
             session('admin', $admin);
-            // $groups_id = $admin->groups_id;
-            // $groups_id = $groups_id->toArray();
-            // session('groups_id', $groups_id);
+            session('groups_id', $groups_id);
             $this->success('登录成功');
         }
         $this->assign('captcha', $captcha);
